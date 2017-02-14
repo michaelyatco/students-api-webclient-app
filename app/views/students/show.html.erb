@@ -1,3 +1,8 @@
 <h1>Student:</h1>
 <p>Name: <%= @student["full_name"] %></p>
+<p>Birthdate: <%= @student["birthdate"] %></p>
+<p>University: <%= @student["university"] %></p>
 <p>Pokemon: <%= @student["pokemon"] %></p>
+<p>Email: <%= @student["email"] %></p>
+
+<%= link_to "Delete Student", "/students/#{params["id"]}", method: :delete, class: "btn btn-danger" %>
