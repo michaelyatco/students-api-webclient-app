@@ -1,12 +1,16 @@
 class StudentsController < ApplicationController
+
+  HEADER = {"Accept" => "application/json", 
+            "X-User-Email"=>"Mike@Yatco.com", 
+            "Authorization"=>"Token token=password"}
   
   def index
-    @students = Unirest.get("#{ENV['API_URL']}students/").body
+    @students = Unirest.get("#{ENV['API_URL']}students/", headers: HEADER,).body
     render "index.html.erb"
   end
 
   def show
-    @student = Unirest.get("#{ENV['API_URL']}students/#{params[:id]}").body
+    @student = Unirest.get("#{ENV['API_URL']}students/#{params[:id]}", headers: HEADER,).body
     render "show.html.erb"
   end
 
