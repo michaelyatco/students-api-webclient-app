@@ -1,9 +1,9 @@
-<h1>Student:</h1>
+<h1>Students:</h1>
 <% @students.each do |student| %>
-<p>Name: <%= student["full_name"] %></p>
-<p>Birthdate: <%= student["birthdate"] %></p>
-<p>University: <%= student["university"] %></p>
-<p>Pokemon: <%= student["pokemon"] %></p>
-<p>Email: <%= student["email"] %></p>
+<p>Name: <%= student.full_name %></p>
+<p>Birthdate: <%= student.birthdate %></p>
+<p>University: <%= student.university %></p>
+<p>Pokemon: <%= student.pokemon %></p>
+<p>Email: <%= student.email %></p>
 <% end %>
 

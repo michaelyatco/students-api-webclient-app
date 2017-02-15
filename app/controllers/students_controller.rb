@@ -1,11 +1,7 @@
 class StudentsController < ApplicationController
-
-  HEADER = {"Accept" => "application/json", 
-            "X-User-Email"=>"Mike@Yatco.com", 
-            "Authorization"=>"Token token=password"}
   
   def index
-    @students = Unirest.get("#{ENV['API_URL']}students/", headers: HEADER,).body
+    @students = Student.all
     render "index.html.erb"
   end
 
@@ -20,27 +16,24 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = Unirest.post("#{ENV['API_URL']}students/", 
-      headers:{ "Accept" => "application/json"},
-      parameters:{ first_name: params[:first_name], last_name: params[:last_name], birthdate: params[:birthdate], university: params[:university], pokemon: params[:pokemon], email: params[:email]}).body
-    redirect_to "/students/#{@student['id']}"
+    @student = Student.create(first_name: params[:first_name], last_name: params[:last_name], birthdate: params[:birthdate], university: params[:university], pokemon: params[:pokemon], email: params[:email])
+    render "new.html.erb"
   end
 
   def edit
-    @student = Unirest.get("#{ENV['API_URL']}students/#{params[:id]}").body
+    @student = Student.find_by(id: params[:id])
     render "edit.html.erb"
   end
 
   def update
-    @student = Unirest.patch("#{ENV['API_URL']}students/#{params[:id]}", 
-      headers:{ "Accept" => "application/json"},
-      parameters:{ first_name: params[:first_name], last_name: params[:last_name], birthdate: params[:birthdate], university: params[:university], pokemon: params[:pokemon], email: params[:email]}).body
-    redirect_to "/students/#{@student['id']}"
+    @student = Student.find_by(id: params[:id])
+    @student.update(first_name: params[:first_name], last_name: params[:last_name], birthdate: params[:birthdate], university: params[:university], pokemon: params[:pokemon], email: params[:email])
+    redirect_to "/students/#{@student.id}"
   end
 
   def destroy
-    @student = Unirest.delete("#{ENV['API_URL']}students/#{params[:id]}",
-      headers:{ "Accept" => "application/json"}).body
+    @student = Student.find_by(id: params[:id])
+    @student.destroy
     redirect_to "/students"
   end
 

@@ -1,9 +1,9 @@
-<%= form_tag "/students/#{@student["id"]}", method: :patch do %>
-  <p>First Name: <input type="text" name="first_name" value=<%= @student["first_name"] %>></p>
-  <p>Last Name: <input type="text" name="last_name" value=<%= @student["last_name"] %>></p>
-  <p>Birthdate: <input type="text" name="birthdate" value=<%= @student["birthdate"] %>></p>
-  <p>University: <input type="text" name="university" value=<%= @student["university"] %>></p>
-  <p>Pokemon: <input type="text" name="pokemon" value=<%= @student["pokemon"] %>></p>
-  <p>Email: <input type="email" name="email" value=<%= @student["email"] %>></p>
+<%= form_tag "/students/#{@student.id}", method: :patch do %>
+  <p>First Name: <input type="text" name="first_name" value=<%= @student.first_name %>></p>
+  <p>Last Name: <input type="text" name="last_name" value=<%= @student.last_name %>></p>
+  <p>Birthdate: <input type="text" name="birthdate" value=<%= @student.birthdate %>></p>
+  <p>University: <input type="text" name="university" value=<%= @student.university %>></p>
+  <p>Pokemon: <input type="text" name="pokemon" value=<%= @student.pokemon %>></p>
+  <p>Email: <input type="email" name="email" value=<%= @student.email %>></p>
   <input type="submit" value="Edit Student">
 <% end %>
