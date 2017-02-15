@@ -10,7 +10,8 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Unirest.get("#{ENV['API_URL']}students/#{params[:id]}", headers: HEADER,).body
+    @student = Student.find_by(id: params[:id])
+    # @student = Unirest.get("#{ENV['API_URL']}students/#{params[:id]}", headers: HEADER,).body
     render "show.html.erb"
   end
 
