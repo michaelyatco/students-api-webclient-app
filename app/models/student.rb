@@ -29,13 +29,11 @@ class Student
     return students
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 
   def self.create(input_options)
-    Unirest.post("#{ENV['API_URL']}students/", 
+    student_hash = Unirest.post("#{ENV['API_URL']}students/", 
       headers: HEADER, parameters: input_options).body
+    Student.new(student_hash)
   end
 
   def update(input_options)
@@ -44,5 +42,9 @@ class Student
 
   def destroy
     Unirest.delete("#{ENV['API_URL']}students/#{id}", headers: HEADER).body
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
